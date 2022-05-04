@@ -1,19 +1,45 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Transform: 'AWS::Serverless-2016-10-31'
-Description: A starter AWS Lambda function.
+Transform: AWS::Serverless-2016-10-31
+Description: Serverless patterns - Amazon API Gateway to AWS Lambda to Amazon DynamoDB
+
 Resources:
-  helloworldpython:
-    Type: 'AWS::Serverless::Function'
+  LambdaFunction:
+    Type: AWS::Serverless::Function
+    Description: 'Lambda function inserts data into DynamoDB table'
     Properties:
-      Handler: lambda_function.lambda_handler
-      Runtime: python3.7
-      CodeUri: .
-      Description: A starter AWS Lambda function.
-      MemorySize: 128
-      Timeout: 3
+      FunctionName: WeatherFunction
+      Handler: newrelic_lambda_wrapper.handler
+      Runtime: python3.8
+      CodeUri: src/
+      Policies:
+        # This policy allows the lambda to know the value of the New Relic licence key. We need this so
+        # that we can send telemetry back to New Relic
+        - DynamoDBCrudPolicy:
+            TableName: !Ref DynamoDBTable
       Events:
-        HelloWorldApi:
-          Type: {tipo_trigger}
+        ApiEvent:
+          Type: Api
           Properties:
             Path: /
-            Method: GET
+            Method: POST
+      Environment:
+        Variables:
+          # For the instrumentation handler to invoke your real handler, we need this value
+          NEW_RELIC_LAMBDA_HANDLER: index.lambda_handler
+          NEW_RELIC_ACCOUNT_ID: 3485760
+          NEW_RELIC_LICENSE_KEY: b4d29795c7e08fa10c533e565d3bbd974776NRAL
+          # NEW_RELIC_EXTENSION_SEND_FUNCTION_LOGS: true
+          # NEW_RELIC_EXTENSION_LOG_LEVEL: DEBUG
+      Layers:
+        # This layer includes the New Relic Lambda Extension, a sidecar process that sends telemetry,
+        # as well as the New Relic Agent for Python, and a handler wrapper that makes integration easy.
+        - !Sub arn:${AWS::Partition}:lambda:${AWS::Region}:451483290750:layer:NewRelicPython38:39
+  DynamoDBTable:
+    Type: AWS::Serverless::SimpleTable
+    Properties:
+      TableName: WeatherData
+      
+Outputs:
+  EndpointUrl:
+    Description: 'HTTP REST endpoint URL'
+    Value: !Sub 'https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod'
