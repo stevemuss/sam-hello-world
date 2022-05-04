@@ -13,7 +13,7 @@ Resources:
       Timeout: 3
       Events:
         HelloWorldApi:
-          Type: Api
+          Type: {tipo_trigger}
           Properties:
             Path: /
             Method: GET

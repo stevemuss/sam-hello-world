@@ -4,6 +4,8 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Entered the build phase ...
+      - sed -i 's/{tipo_trigger}/Api/g' ./template.yaml
+      - echo template.yaml was updated ...
       #Lambda deploy reference
       #https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-deploying.html
       #Build spec reference
