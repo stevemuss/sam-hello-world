@@ -5,6 +5,7 @@ import boto3
 
 def lambda_handler(event, context):
   dynamodb_client = boto3.client('dynamodb')
+  
   dynamodb_client.put_item(TableName='WeatherData', Item={'id': {'S': '1'}, 'Weather': {'S': 'Sunny'}})
   return {
       'statusCode': 200,
