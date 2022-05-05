@@ -20,8 +20,8 @@ def lambda_handler(event, context):
   
   return {
       'statusCode': 200,
-      'body': {
+      'body': json.dumps({
           'update': 'Successfully inserted data!',
           'message': f'Thanks for you recommendation {save_data["id"]}'
-        }
+        })
   }
