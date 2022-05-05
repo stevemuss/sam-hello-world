@@ -5,7 +5,6 @@ import boto3
 import json
 
 def lambda_handler(event, context):
-  
   dynamodb_client = boto3.client('dynamodb')
   
   data = json.loads(event.get("body"))
@@ -17,9 +16,12 @@ def lambda_handler(event, context):
         'recommendation': {'S': data.get("recommendation", "")},
         'python_level': {'S': data.get("python_level", "")},
     }
-    dynamodb_client.put_item(TableName='WeatherData', Item=save_data)
+    dynamodb_client.put_item(TableName='RecommendationsData', Item=save_data)
   
   return {
       'statusCode': 200,
-      'body': 'Successfully inserted data!'
+      'body': {
+          'update': 'Successfully inserted data!',
+          'message': f'Thanks for you recommendation {save_data["id"]}'
+        }
   }
