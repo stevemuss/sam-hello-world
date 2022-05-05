@@ -26,8 +26,8 @@ Resources:
         Variables:
           # For the instrumentation handler to invoke your real handler, we need this value
           NEW_RELIC_LAMBDA_HANDLER: index.lambda_handler
-          NEW_RELIC_ACCOUNT_ID: 3485760
-          NEW_RELIC_LICENSE_KEY: b4d29795c7e08fa10c533e565d3bbd974776NRAL
+          NEW_RELIC_ACCOUNT_ID: {nr_account_id}
+          NEW_RELIC_LICENSE_KEY: {nr_license_key}
           # NEW_RELIC_EXTENSION_SEND_FUNCTION_LOGS: true
           # NEW_RELIC_EXTENSION_LOG_LEVEL: DEBUG
       Layers:
