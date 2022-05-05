@@ -17,11 +17,12 @@ def lambda_handler(event, context):
         'python_level': {'S': data.get("python_level", "")},
     }
     dynamodb_client.put_item(TableName='RecommendationsData', Item=save_data)
+    print(f'I got data from: {data.get("name", "")}')
   
   return {
       'statusCode': 200,
       'body': json.dumps({
           'update': 'Successfully inserted data!',
-          'message': f'Thanks for you recommendation {save_data["id"]}'
+          'message': f'Thanks for you recommendation {data.get("name", "")}'
         })
   }
