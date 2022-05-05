@@ -5,6 +5,7 @@ import boto3
 import json
 
 def lambda_handler(event, context):
+  
   dynamodb_client = boto3.client('dynamodb')
   
   data = json.loads(event.get("body"))
