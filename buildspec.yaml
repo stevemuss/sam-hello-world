@@ -7,12 +7,12 @@ phases:
       # - sed -i 's/{tipo_trigger}/Api/g' ./template.yaml
       # - echo template.yaml was updated ...
       - echo starting template modification ...
-      - NR_ACCOUNT_ID=$(aws --region=us-east-1 ssm get-parameter --name "NR_ACCOUNT_ID" --with-decryption --output text --query Parameter.Value)
-      - NR_LICENSE_KEY=$(aws --region=us-east-1 ssm get-parameter --name "NR_LICENSE_KEY" --with-decryption --output text --query Parameter.Value)
-      - echo This is the account id "$NR_ACCOUNT_ID"
-      - sed -i "s/{nr_account_id}/$NR_ACCOUNT_ID/g" ./template.yaml
-      - sed -i "s/{nr_license_key}/$NR_LICENSE_KEY/g" ./template.yaml
-      - echo template updated
+      # - NR_ACCOUNT_ID=$(aws --region=us-east-1 ssm get-parameter --name "NR_ACCOUNT_ID" --with-decryption --output text --query Parameter.Value)
+      # - NR_LICENSE_KEY=$(aws --region=us-east-1 ssm get-parameter --name "NR_LICENSE_KEY" --with-decryption --output text --query Parameter.Value)
+      # - echo This is the account id "$NR_ACCOUNT_ID"
+      # - sed -i "s/{nr_account_id}/$NR_ACCOUNT_ID/g" ./template.yaml
+      # - sed -i "s/{nr_license_key}/$NR_LICENSE_KEY/g" ./template.yaml
+      # - echo template updated
       #Lambda deploy reference
       #https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-deploying.html
       #Build spec reference
