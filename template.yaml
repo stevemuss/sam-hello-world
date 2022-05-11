@@ -29,7 +29,7 @@ Resources:
               Action:
                 - secretsmanager:GetSecretValue
               Resource:
-                - FAKE_VALUE
+                - ""
 
       Environment:
         Variables:
