@@ -22,6 +22,15 @@ Resources:
           Properties:
             Path: /
             Method: POST
+      Policies:
+        - Version: '2022-05-11'
+          Statement:
+            - Effect: Allow
+              Action:
+                - secretsmanager:GetSecretValue
+              Resource:
+                - FAKE_VALUE
+
       Environment:
         Variables:
           # For the instrumentation handler to invoke your real handler, we need this value
