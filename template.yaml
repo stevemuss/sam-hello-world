@@ -22,7 +22,7 @@ Resources:
               Action:
                 - secretsmanager:GetSecretValue
               Resource:
-                - "FAKE_VALUE"
+                - "*"
       Events:
         ApiEvent:
           Type: Api
