@@ -16,20 +16,19 @@ Resources:
         # that we can send telemetry back to New Relic
         - DynamoDBCrudPolicy:
             TableName: !Ref DynamoDBTable
-      Events:
-        ApiEvent:
-          Type: Api
-          Properties:
-            Path: /
-            Method: POST
-      Policies:
         - Version: '2022-05-11'
           Statement:
             - Effect: Allow
               Action:
                 - secretsmanager:GetSecretValue
               Resource:
-                - "*"
+                - "FAKE_VALUE"
+      Events:
+        ApiEvent:
+          Type: Api
+          Properties:
+            Path: /
+            Method: POST
 
       Environment:
         Variables:
