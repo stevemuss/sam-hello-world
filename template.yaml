@@ -14,8 +14,8 @@ Resources:
       Policies:
         # This policy allows the lambda to know the value of the New Relic licence key. We need this so
         # that we can send telemetry back to New Relic
-        - DynamoDBCrudPolicy:
-            TableName: !Ref DynamoDBTable
+        # - DynamoDBCrudPolicy:
+        #    TableName: !Ref DynamoDBTable
         - Version: '2022-05-11'
           Statement:
             - Effect: Allow
