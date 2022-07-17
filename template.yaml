@@ -38,7 +38,6 @@ Resources:
           # NEW_RELIC_LICENSE_KEY: {nr_license_key}
           NEW_RELIC_LICENSE_KEY_SECRET: NEW_RELIC_LICENSE_KEY_CUSTOM_SECRET
           # NEW_RELIC_EXTENSION_SEND_FUNCTION_LOGS: true
-          # NEW_RELIC_EXTENSION_LOG_LEVEL: DEBUG
       Layers:
         # This layer includes the New Relic Lambda Extension, a sidecar process that sends telemetry,
         # as well as the New Relic Agent for Python, and a handler wrapper that makes integration easy.
